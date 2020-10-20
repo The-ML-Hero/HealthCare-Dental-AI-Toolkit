@@ -46,10 +46,10 @@ def root_mask(request):
         fs = FileSystemStorage()
         name = fs.save(uploaded_file_input.name, uploaded_file_input)
         context['URL_Input'] = fs.url(name)
-        input_image_url = requests.get(f'http://127.0.0.1:1234{fs.url(name)}')
+        input_image_url = requests.get(f'https://healthcare-toolkit-dental-ai.herokuapp.com{fs.url(name)}')
         CBCT_Model.objects.create(CBCT_file=uploaded_file_input,CBCT_name='Uploaded File')
 
-        image_input = urllib.request.urlopen(f'http://127.0.0.1:1234{fs.url(name)}')
+        image_input = urllib.request.urlopen(f'https://healthcare-toolkit-dental-ai.herokuapp.com{fs.url(name)}')
         arr_input = np.asarray(bytearray(image_input.read()), dtype=np.uint8)
         Image_input =  cv2.imdecode(arr_input, -1)
         output = predictor(Image_input)
@@ -64,7 +64,7 @@ def root_mask(request):
 
         CBCT_Model.objects.create(CBCT_image =f'./images/root_segmentation/output_MASK_DETECTRON{file_random_name}.png' ,CBCT_name='Output File')
         
-        context['URL_Output'] = f'http://127.0.0.1:1234/media/images/root_segmentation/output_MASK_DETECTRON{file_random_name}.png'
+        context['URL_Output'] = f'https://healthcare-toolkit-dental-ai.herokuapp.com/media/images/root_segmentation/output_MASK_DETECTRON{file_random_name}.png'
 
         if int(output["instances"].pred_classes[0]) == 0:
              context['classes_pred'] = 'CShaped'
