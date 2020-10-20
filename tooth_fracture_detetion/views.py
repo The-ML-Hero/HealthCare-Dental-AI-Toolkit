@@ -25,7 +25,7 @@ def fracture_detec(request):
         fs = FileSystemStorage()
         name = fs.save(uploaded_file_input.name, uploaded_file_input)
         context['URL_Input'] = fs.url(name)
-        input_image_url = requests.get(f'http://127.0.0.1:1234{fs.url(name)}')
+        input_image_url = requests.get(f'https://healthcare-toolkit-dental-ai.herokuapp.com{fs.url(name)}')
         Fracture_Model.objects.create(fracture_file=uploaded_file_input,fracture_name='Uploaded File')
 
         Image_input =  PIL.Image.open(BytesIO(input_image_url.content))
@@ -33,6 +33,6 @@ def fracture_detec(request):
 
         os.system(f"python3 detect.py --weights ./weights/best.pt --img 416 --conf 0.5 --source Fracture_Input{file_random_name}.jpg --output ./media/inference/output/")
         Fracture_Model.objects.create(fracture_image =f'./media/inference/output/Fracture_Input{file_random_name}.jpg' ,fracture_name='Output File')
-        context['URL_Output'] = f'http://127.0.0.1:1234/media/inference/output/Fracture_Input{file_random_name}.jpg'
+        context['URL_Output'] = f'https://healthcare-toolkit-dental-ai.herokuapp.com/media/inference/output/Fracture_Input{file_random_name}.jpg'
 
     return render(request,'fracture.html',context)
