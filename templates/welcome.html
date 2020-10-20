@@ -1,0 +1,20 @@
+{%  extends "base.html" %}
+{% block content %}
+
+
+
+
+<div class="jumbotron">
+  <h1 class="display-4">Welcome to the <strong> HEALTHCARE TOOLKIT!</strong></h1>
+  <p class="lead">We offer all sorts of health care diagnosis to help speed up your process <strong>LIKE</strong></p>
+  <hr class="my-4">
+  <ul>
+    <li><a href="{% url 'mode_selection_regenerate_page'%}">Tooth Fracture Regenerator</a>
+    <li><a href="{% url 'fracture_detection_page'%}">Tooth Fracture Detector</a>
+    <li><a href="{% url 'root_segmentation_page'%}">Root Anatomy Prediction</a> 
+    <li><a href="{% url 'flurosis_detection_page' %}">Flurosis Detector</a>   
+</ul>
+<small class="text-muted">If you are unsure please refer to <a href = '#'>our help page</a></small>
+
+</div>
+{% endblock %}

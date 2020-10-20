@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="shadow p-3 mb-5 bg-white rounded">
+<div class='card'>
+    <div class="card-header">
+<h1>Profile</h1>
+</div>
+<div class="card-body">
+    <h3>Username:     <strong>{{user.username}}</strong></h3><br>
+    <h3>Email:  <strong>{{user.email}}</strong></h3><small class="text-muted">Want to <a href="{% url 'account_email' %}">Change Your Email?</a> </small><br><br>
+    <a href="{% url 'account_logout' %}"><button type="button" class="btn btn-outline-primary">Log Out</button></a>
+</div>
+</div>
+</div>
+{% endblock %}

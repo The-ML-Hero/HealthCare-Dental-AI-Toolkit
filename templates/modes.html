@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<div class = "shadow-lg p-3 mb-5 bg-white rounded">
+<div class="row align-items-center justify-content-center">
+<div class="card" style="width: 18rem;">
+  <img src="data:image/png;base64,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" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Guided Mode</h5>
+    <p class="card-text">We Will Take You Step By Step Through The Process</p>
+    <a href="#" class="btn btn-primary">Guided Mode</a> </div>
+</div>
+</div>
+</div>
+<br>
+<div class = "shadow-lg p-3 mb-5 bg-white rounded">
+<div class="row align-items-center justify-content-center">
+
+    <div class="card" style="width: 18rem;">
+      <img src="https://image.flaticon.com/icons/png/512/1610/1610407.png"class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Expert Mode</h5>
+        <p class="card-text">We Wont Be Guiding You</p>
+        <a href="{% url 'Regenerate' %}" class="btn btn-primary">Expert Mode</a> </div>
+    </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="card">
+    <div class="card-header">
+        <h2>Please Enter Your Verification Code</h2>
+    </div>
+    <div class="card-body">
+        <form method="POST">{% csrf_token %}
+            {{verify_form.as_p}}
+            <button class="btn btn-outline-info" type="submit">Verify</button>
+        </form>
+    </div>    
+</div>
+
+{% endblock %}

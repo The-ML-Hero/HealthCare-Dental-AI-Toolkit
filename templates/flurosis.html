@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block content %}
+<h1 class="border-bottom">Flurosis Detector</h1><br><br>
+<h3><strong>Steps:</strong></h3>
+  <div class="list-group">
+    <a href="#" class="list-group-item list-group-item-action " data-toggle="modal" data-target="#OneModal">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">Step One</h5>
+      </div>
+      <p class="mb-1">Provide it  with a Flurosis Image</p>
+    </a>
+    <a href="#" class="list-group-item list-group-item-action">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">Step Two</h5>
+      </div>
+      <p class="mb-1">Hit the submit button</p>
+    </a>
+  </div>  <br><br>
+  
+  <div class="modal fade" id="OneModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Step One</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Under the Input Image Section You Will Have to Upload the Flurosis Tooth Image.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class = "shadow-lg p-3 mb-5 bg-white rounded">
+    <div class="card">
+        <div class="card-header">
+    <h2>Input Image</h2></div>
+    <div class="card-body">
+    <input type="file" name='flurosis_input_image' required><br><br>
+     </div>
+    </div>
+
+</div>
+
+<button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button><br><br>
+    <!-- <input type="submit" value='submit'> -->
+
+</form>
+
+{% if URL_Input %}
+<figure class="figure">
+    <img src= {{URL_Input}}>
+    <figcaption class="figure-caption">The Input Image</figcaption>
+</figure><br><br>
+
+
+<figure class="figure">
+    <img src= {{URL_Output}}>
+    <figcaption class="figure-caption">The Predictions</figcaption>
+</figure><br><br>
+
+{% else %}
+    <small></small>
+ 
+{% endif %}   
+
+{% endblock %}
