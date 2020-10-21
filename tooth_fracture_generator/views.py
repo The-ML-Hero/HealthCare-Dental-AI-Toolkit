@@ -29,8 +29,8 @@ def regenerate(request):
         context['URL_Mask'] = fs.url(name_mask)
         Document.objects.create(document=uploaded_file_input,document_name='Uploaded File')
         Document.objects.create(document=uploaded_file_mask,document_name='Uploaded File Mask')
-        image_input = urllib.request.urlopen(f'http://127.0.0.1:1234{fs.url(name)}')
-        mask_input = urllib.request.urlopen(f'http://127.0.0.1:1234{fs.url(name_mask)}')
+        image_input = urllib.request.urlopen(f'https://healthcare-toolkit-dental-ai.herokuapp.com{fs.url(name)}')
+        mask_input = urllib.request.urlopen(f'https://healthcare-toolkit-dental-ai.herokuapp.com{fs.url(name_mask)}')
         arr_input = np.asarray(bytearray(image_input.read()), dtype=np.uint8)
         arr_mask = np.asarray(bytearray(mask_input.read()), dtype=np.uint8)
 
@@ -40,7 +40,7 @@ def regenerate(request):
         output = cv2.inpaint(Image_input, Image_mask,int(slider_value[0]), cv2.INPAINT_TELEA)
         cv2.imwrite(f'{str(settings.MEDIA_ROOT)}/Output_CV2_MASK.png{random_file_name}.png',output)
         Document.objects.create(document_image =f'/Output_CV2_MASK.png{random_file_name}.png' ,document_name='Output File')
-        context['URL_Output'] = f'http://127.0.0.1:1234/media/Output_CV2_MASK.png{random_file_name}.png'
+        context['URL_Output'] = f'https://healthcare-toolkit-dental-ai.herokuapp.com/media/Output_CV2_MASK.png{random_file_name}.png'
     return render(request,'toothregenerator.html',context)    
 
 @login_required

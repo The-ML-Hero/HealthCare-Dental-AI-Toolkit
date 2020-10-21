@@ -26,7 +26,7 @@ SECRET_KEY = 'keyxm@g#4%t(xpow5iuc2a5160t8p+y(wi^!l)sy)2dij_@qmu'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['healthcare-dentalai-toolkit.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['healthcare-toolkit-dental-ai.herokuapp.com','127.0.0.1']
 
 
 # Application definition

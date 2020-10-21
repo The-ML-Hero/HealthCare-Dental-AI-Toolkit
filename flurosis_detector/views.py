@@ -12,6 +12,8 @@ from io import BytesIO
 import secrets
 file_random_name = secrets.token_hex(32)
 # Create your views here.
+
+
 @login_required
 def flurosis_detec(request):
     context = {}
@@ -20,7 +22,7 @@ def flurosis_detec(request):
         fs = FileSystemStorage()
         name = fs.save(uploaded_file_input.name, uploaded_file_input)
         context['URL_Input'] = fs.url(name)
-        input_image_url = requests.get(f'http://127.0.0.1:1234{fs.url(name)}')
+        input_image_url = requests.get(f'https://healthcare-toolkit-dental-ai.herokuapp.com{fs.url(name)}')
         Flurosis_Model.objects.create(flurosis_file=uploaded_file_input,flurosis_name='Uploaded File')
 
         Image_input =  PIL.Image.open(BytesIO(input_image_url.content))
@@ -28,6 +30,6 @@ def flurosis_detec(request):
 
         os.system(f"python3 detect.py --weights ./weights/best_flurosis.pt --img 416 --conf 0.5 --source ./Flurosis_Input{file_random_name}.jpg --output ./media/inference/output/")
         Flurosis_Model.objects.create(flurosis_image =f'./inference/output/Flurosis_Input{file_random_name}.jpg' ,flurosis_name='Output File')
-        context['URL_Output'] = f'http://127.0.0.1:1234/media/inference/output/Flurosis_Input{file_random_name}.jpg'
+        context['URL_Output'] = f'https://healthcare-toolkit-dental-ai.herokuapp.com/media/inference/output/Flurosis_Input{file_random_name}.jpg'
 
     return render(request,'flurosis.html',context)
