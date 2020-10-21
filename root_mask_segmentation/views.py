@@ -20,13 +20,13 @@ from detectron2.utils.visualizer import Visualizer
 from detectron2.data import MetadataCatalog,DatasetCatalog
 # Create your views here.
  
-#o = int(np.random.randint(low=10301319,high=9987869996)) 
+o = int(np.random.randint(low=10301319,high=9987869996)) 
 cfg = get_cfg()
 cfg.MODEL.DEVICE='cpu'
 cfg.merge_from_file(model_zoo.get_config_file('COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml'))
-register_coco_instances("tooth_segmentation_maskrcnn",{},str(f"{settings.BASE_DIR}/InstanceSegmentationSegmentationTooth/ann/instances_default.json"),str(f"{settings.BASE_DIR}/InstanceSegmentationSegmentationTooth/img"))
-meta_teeth = MetadataCatalog.get(f"tooth_segmentation_maskrcnn")
-cfg.DATASETS.TRAIN = (f"tooth_segmentation_maskrcnn",)
+register_coco_instances(f"tooth_segmentation_maskrcnn{o}",{},str(f"{settings.BASE_DIR}/InstanceSegmentationSegmentationTooth/ann/instances_default.json"),str(f"{settings.BASE_DIR}/InstanceSegmentationSegmentationTooth/img"))
+meta_teeth = MetadataCatalog.get(f"tooth_segmentation_maskrcnn{o}")
+cfg.DATASETS.TRAIN = (f"tooth_segmentation_maskrcnn{o}",)
 cfg.DATASETS.TEST = ()
 cfg.DATASETS.NUM_WORKERS = 2
 cfg.SOLVER.IMS_PER_BATCH = 2
