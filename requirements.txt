@@ -2,7 +2,6 @@ matplotlib
 opencv-python-headless
 opencv-contrib-python-headless
 Django
-uWSGI
 gunicorn
 django-allauth
 cython
@@ -13,5 +12,4 @@ pillow
 torch===1.6.0+cpu
 torchvision===0.7.0+cpu
 detectron2
-fastai==1.0.61
 pycocotools-fix
